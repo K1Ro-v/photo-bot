@@ -78,14 +78,14 @@ async def process_n8n_request(user_id: int, prompt: Optional[str], settings: dic
 
         # Отправляем результат пользователю после завершения
         if n8n_response and n8n_response.get('success'):
-            await context.bot.send_message(chat_id=chat_id, text="🎃 Готово! Твоя тыквоголовка ждет тебя выше! 👻\n\nМожешь скинуть новую фотку")
+            await context.bot.send_message(chat_id=chat_id, text="✅ Твой портрет готов.\n\n📸 Отправь новое фото, если хочешь обновить образ.")
         else:
-            await context.bot.send_message(chat_id=chat_id, text="❌ Упс! Магия не сработала... Попробуй еще раз! 🎃\n\nМожет быть, тыквенные духи отдыхают? 👻")
+            await context.bot.send_message(chat_id=chat_id, text="⚠️ Не удалось создать портрет.\n\nПопробуй ещё раз через пару минут.")
 
     except Exception as e:
         print(f"❌ Error in background task for user {user_id}: {e}")
         try:
-            await context.bot.send_message(chat_id=chat_id, text="👻 Ой! Что-то пошло не так... Попробуй снова!\n\nТыквенная магия иногда капризничает! 🎃")
+            await context.bot.send_message(chat_id=chat_id, text="❌ Произошёл сбой.\n\nСкоро всё будет исправлено — попробуй позже.")
         except:
             pass
 
